@@ -1,0 +1,23 @@
+:root {
+    --primary-color: #F4B218;
+    --black: #000;
+    --white: #fff;
+    --gray: #EAEAE9;
+
+    --font-family: 'Roboto';
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto'), url(../fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+}
+
+body {
+    background-color: var(--gray);
+}
