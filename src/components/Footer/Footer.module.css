@@ -1,0 +1,51 @@
+footer {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  color: var(--white);
+  background-color: var(--primary-color);
+}
+
+.footerText > p {
+  padding: 0.5rem 0;
+}
+
+.footerText > p > span {
+  font-weight: bolder;
+}
+
+.footerText > p:nth-of-type(1) {
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-style: oblique;
+}
+
+.footerText > p:nth-of-type(2) {
+  font-size: 1rem;
+}
+
+.iconContainer {
+  width: 80%;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.iconContainer .listItem {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+}
+
+.iconContainer .listItem .listLink {
+  color: var(--white);
+}
+
+.iconContainer .listItem .listLink > svg {
+  font-size: 1.75rem;
+}
