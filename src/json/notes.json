@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "header": "Meeting Notes",
+    "content": "Discuss project timelines and deliverables."
+  },
+  {
+    "id": 2,
+    "header": "Grocery List",
+    "content": "Milk, Eggs, Bread, Butter, Coffee."
+  },
+  {
+    "id": 3,
+    "header": "Book Recommendations",
+    "content": "1984 by George Orwell, Brave New World by Aldous Huxley, Fahrenheit 451 by Ray Bradbury."
+  },
+  {
+    "id": 4,
+    "header": "Workout Plan",
+    "content": "Monday: Chest, Tuesday: Back, Wednesday: Legs, Thursday: Shoulders, Friday: Arms."
+  },
+  {
+    "id": 5,
+    "header": "Vacation Ideas",
+    "content": "Visit Japan, Explore the beaches in Thailand, Road trip through Europe."
+  }
+]

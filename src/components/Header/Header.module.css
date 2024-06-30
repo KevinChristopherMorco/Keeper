@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  padding: 1.5rem;
+  padding: 0.5rem;
   font-family: var(--font-family);
   background-color: var(--primary-color);
   color: var(--white);
@@ -14,11 +14,11 @@
 }
 
 .navbar .logoContainer > svg {
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 .navbar p {
-  font-size: 1.5rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.05rem;
 }

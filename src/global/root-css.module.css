@@ -20,6 +20,29 @@
     url(../fonts/Roboto/Roboto-Regular.ttf) format("truetype");
 }
 
-body {
+/* width */
+::-webkit-scrollbar {
+  width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--gray);
 }

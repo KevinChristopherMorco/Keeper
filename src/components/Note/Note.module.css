@@ -1,6 +1,5 @@
 .card {
   width: 100%;
-  height: 50%;
   padding: 5%;
   box-shadow: -1px 1px 10px var(--dark-gray);
   border-radius: 0.5rem;
@@ -8,13 +7,15 @@
 }
 
 .headingContainer {
-  margin: 1rem 0;
+  margin: 0.75rem 0;
 }
 
 .heading {
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
-.contentContainer {
+.contentContainer > p {
+  font-size: 0.875rem;
+  letter-spacing: 0.02rem;
 }

@@ -7,16 +7,18 @@ import {
   faFacebookMessenger,
 } from "@fortawesome/free-brands-svg-icons";
 
+import { faLaptopCode } from "@fortawesome/free-solid-svg-icons";
+
 const Footer = () => {
   return (
     <footer>
       <div className={className.footerText}>
         <p>Creating awesome things!</p>
         <p>
-          <span>Developed by:</span> Kevin Christopher Morco
+          <span>&copy; {new Date().getFullYear()}</span> All rights reserved
         </p>
         <p>
-          <span>&copy; {new Date().getFullYear()}</span> All rights reserved
+          <FontAwesomeIcon icon={faLaptopCode} /> Kevin Christopher Morco
         </p>
       </div>
       <ul className={className.iconContainer}>
