@@ -6,10 +6,10 @@ import NoteContainer from "./components/containers/Note/NoteContainer";
 import Note from "./components/Note/Note";
 import Footer from "./components/Footer/Footer";
 
-import notes from "./json/notes.json"; // Adjust the path as per your project structure
+import notes from "./json/notes.json";
 
-const populateCard = (note) => {
-  return <Note key={note.id} header={note.header} content={note.content} />;
+const populateCard = (props) => {
+  return <Note key={props.id} header={props.header} content={props.content} />;
 };
 
 function App() {
