@@ -1,6 +1,6 @@
 .navbar {
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.75rem;
   font-family: var(--font-family);
   background-color: var(--primary-color);
   color: var(--white);
@@ -18,7 +18,7 @@
 }
 
 .navbar p {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 0.05rem;
 }
