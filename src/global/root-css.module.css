@@ -1,5 +1,6 @@
 :root {
   --primary-color: #f4b218;
+  --focus-color: #f4b218;
   --black: #000;
   --white: #fff;
   --gray: #eaeae9;
@@ -18,6 +19,14 @@
   font-family: "Roboto";
   src: local("Roboto"),
     url(../fonts/Roboto/Roboto-Regular.ttf) format("truetype");
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  min-height: 100%;
 }
 
 /* width */
@@ -41,6 +50,7 @@
 }
 
 .app {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
