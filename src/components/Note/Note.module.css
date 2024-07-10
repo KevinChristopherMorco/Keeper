@@ -13,7 +13,8 @@
 .card {
   width: 100%;
   padding: 1.25rem 0.5rem 0.5rem 1rem;
-
+  display: flex;
+  flex-direction: column;
   box-shadow: -1px 1px 10px var(--dark-gray);
   border-radius: 0.5rem;
   background-color: var(--white);
@@ -71,6 +72,7 @@ textarea {
   width: 30px;
   align-self: end;
   color: red;
+  cursor: pointer;
 }
 
 form {

@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import className from "./Note.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
-const AddNote = (props) => {
-  const [note, setNote] = useState(
-    () => JSON.parse(localStorage.getItem("notes")) || []
-  );
+import Input from "../elements/Input";
+import Textarea from "../elements/Textarea";
 
-  const [inputValue, setInputValue] = useState({ header: "", content: "" });
+import { v4 } from "uuid";
+
+const AddNote = (props) => {
+  const [inputValue, setInputValue] = useState({
+    id: v4(),
+    header: "",
+    content: "",
+  });
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -21,22 +25,26 @@ const AddNote = (props) => {
   }
 
   function onSubmit(e) {
-    props.handle(inputValue);
+    props.handleAdd(inputValue);
+    setInputValue({ id: v4(), header: "", content: "" });
     e.preventDefault();
   }
 
   return (
     <div className={className.cardAdd}>
       <form action="" onSubmit={onSubmit}>
-        <input
+        <Input
           name="header"
           type="text"
           placeholder="Title"
+          value={inputValue.header}
           onChange={handleChange}
         />
-        <textarea
+
+        <Textarea
           name="content"
           placeholder="Take a note..."
+          value={inputValue.content}
           onChange={handleChange}
         />
         <button type="submit">
@@ -48,7 +56,9 @@ const AddNote = (props) => {
 };
 
 const Note = (props) => {
-  console.log(props.header);
+  function onSubmitDelete(e) {
+    props.handleDelete(props.id);
+  }
   return (
     <div className={className.card}>
       <div className={className.headingContainer}>
@@ -57,7 +67,11 @@ const Note = (props) => {
       <div className={className.contentContainer}>
         <p className={className.content}>{props.content}</p>
       </div>
-      <FontAwesomeIcon className="fa-sm" icon={faTrashCan} />
+      <FontAwesomeIcon
+        onClick={onSubmitDelete}
+        className="fa-sm"
+        icon={faTrashCan}
+      />
     </div>
   );
 };

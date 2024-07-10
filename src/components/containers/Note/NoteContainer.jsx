@@ -2,19 +2,19 @@ import { useState, useEffect } from "react";
 import className from "./NoteContainer.module.css";
 import Note, { AddNote } from "../../Note/Note";
 
-const populateCard = (props) => {
-  return <Note key={props.id} header={props.header} content={props.content} />;
-};
-
-const NoteContainer = (props) => {
+const NoteContainer = () => {
   const [note, setNote] = useState(
     () => JSON.parse(localStorage.getItem("notes")) || []
   );
 
-  const handleAddNote = (test) => {
+  const handleAddNote = (note) => {
     setNote((prevValue) => {
-      return [...prevValue, test];
+      return [...prevValue, note];
     });
+  };
+
+  const handleDeleteNote = (noteId) => {
+    setNote(() => note.filter((x) => x.id !== noteId));
   };
 
   useEffect(() => {
@@ -23,8 +23,18 @@ const NoteContainer = (props) => {
 
   return (
     <div className={className.container}>
-      <AddNote handle={handleAddNote} />
-      {note.map(populateCard)}
+      <AddNote handleAdd={handleAddNote} />
+      {note.map((props, index) => {
+        return (
+          <Note
+            key={index}
+            id={props.id}
+            header={props.header}
+            content={props.content}
+            handleDelete={handleDeleteNote}
+          />
+        );
+      })}
     </div>
   );
 };
