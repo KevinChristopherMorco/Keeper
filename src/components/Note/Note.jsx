@@ -76,8 +76,6 @@ const AddNote = (props) => {
 };
 
 const Note = (props) => {
-  const handleDelete = useCallback(() => props.handleDelete(props.id));
-  const handleEdit = useCallback(() => props.handleEdit(props.id));
   const { header, content, isEditable } = props;
 
   const [note, setNote] = useState({
@@ -85,8 +83,19 @@ const Note = (props) => {
     content: props.content,
   });
 
+  const handleDelete = useCallback(() => props.handleDelete(props.id));
+  const handleEdit = useCallback(() => props.handleEdit(props.id));
+  const discardChanges = useCallback(() => {
+    props.handleDiscard(props.id);
+    setNote(() => {
+      return {
+        header: props.header,
+        content: props.content,
+      };
+    });
+  });
+
   const onChange = (event) => {
-    console.log(event.target.value);
     setNote((prev) => {
       const { name, value } = event.target;
       return {
@@ -96,10 +105,11 @@ const Note = (props) => {
     });
   };
 
-  const save = (event) => {
+  const saveChanges = (event) => {
     const { header, content } = note;
     props.handleChanges(props.id, header, content);
   };
+
   return (
     <div className={className.card}>
       <div className={className.headingContainer}>
@@ -129,7 +139,7 @@ const Note = (props) => {
       <div className={className.buttonContainer}>
         <button
           className={isEditable ? className.saveBtn : className.editBtn}
-          onClick={isEditable ? save : handleEdit}
+          onClick={isEditable ? saveChanges : handleEdit}
         >
           <FontAwesomeIcon
             className="fa-xl"
@@ -137,7 +147,10 @@ const Note = (props) => {
           />
           {isEditable ? "Save" : "Edit"}
         </button>
-        <button className={className.deleteBtn} onClick={handleDelete}>
+        <button
+          className={className.deleteBtn}
+          onClick={isEditable ? discardChanges : handleDelete}
+        >
           <FontAwesomeIcon
             className="fa-xl"
             icon={isEditable ? faXmarkCircle : faTrashCan}

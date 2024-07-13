@@ -35,6 +35,14 @@ const NoteContainer = () => {
     );
   };
 
+  const handleDiscard = (id) => {
+    setNote((prevValue) =>
+      prevValue.map((note) =>
+        note.id === id ? { ...note, isEditable: false } : note
+      )
+    );
+  };
+
   const handleChanges = (id, header, content) => {
     setNote((prevValue) =>
       prevValue.map((note) =>
@@ -62,6 +70,7 @@ const NoteContainer = () => {
             handleEdit={handleEdit}
             handleDelete={handleDeleteNote}
             handleChanges={handleChanges}
+            handleDiscard={handleDiscard}
             isEditable={props.isEditable}
           />
         );
