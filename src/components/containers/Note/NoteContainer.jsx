@@ -1,20 +1,48 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import className from "./NoteContainer.module.css";
 import Note, { AddNote } from "../../Note/Note";
+import { isEditable } from "@testing-library/user-event/dist/utils";
 
 const NoteContainer = () => {
   const [note, setNote] = useState(
     () => JSON.parse(localStorage.getItem("notes")) || []
   );
 
-  const handleAddNote = (note) => {
-    setNote((prevValue) => {
-      return [...prevValue, note];
-    });
+  const [editable, setEditable] = useState(false);
+
+  const handleAddNote = useCallback(
+    (note) => {
+      setNote((prevValue) => {
+        return [...prevValue, note];
+      });
+    },
+    [note]
+  );
+
+  const handleDeleteNote = useCallback(
+    (noteId) => {
+      alert("Delete note?");
+      setNote(() => note.filter((x) => x.id !== noteId));
+    },
+    [note]
+  );
+
+  const handleEdit = (id) => {
+    setNote((prevValue) =>
+      prevValue.map((note) =>
+        note.id === id ? { ...note, isEditable: true } : note
+      )
+    );
   };
 
-  const handleDeleteNote = (noteId) => {
-    setNote(() => note.filter((x) => x.id !== noteId));
+  const handleChanges = (id, header, content) => {
+    setNote((prevValue) =>
+      prevValue.map((note) =>
+        note.id === id
+          ? { ...note, header: header, content: content, isEditable: false }
+          : note
+      )
+    );
   };
 
   useEffect(() => {
@@ -31,7 +59,10 @@ const NoteContainer = () => {
             id={props.id}
             header={props.header}
             content={props.content}
+            handleEdit={handleEdit}
             handleDelete={handleDeleteNote}
+            handleChanges={handleChanges}
+            isEditable={props.isEditable}
           />
         );
       })}
