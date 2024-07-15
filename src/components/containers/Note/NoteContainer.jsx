@@ -8,8 +8,6 @@ const NoteContainer = () => {
     () => JSON.parse(localStorage.getItem("notes")) || []
   );
 
-  const [editable, setEditable] = useState(false);
-
   const handleAddNote = useCallback(
     (note) => {
       setNote((prevValue) => {
@@ -57,6 +55,15 @@ const NoteContainer = () => {
     localStorage.setItem("notes", JSON.stringify(note));
   }, [note]);
 
+  const [hover, setHover] = useState(null);
+
+  const handleHover = useCallback((id) => {
+    setHover(id);
+  });
+  const handleMouseOut = useCallback(() => {
+    setHover(null);
+  });
+
   return (
     <div className={className.container}>
       <AddNote handleAdd={handleAddNote} />
@@ -72,6 +79,9 @@ const NoteContainer = () => {
             handleChanges={handleChanges}
             handleDiscard={handleDiscard}
             isEditable={props.isEditable}
+            isHover={props.id === hover}
+            handleOut={handleMouseOut}
+            handleHover={() => handleHover(props.id)}
           />
         );
       })}

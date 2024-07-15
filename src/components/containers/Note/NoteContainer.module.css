@@ -4,3 +4,13 @@
   flex-direction: column;
   gap: 20px;
 }
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    align-items: flex-start;
+    gap: 20px;
+  }
+}

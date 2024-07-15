@@ -31,6 +31,7 @@
 .contentContainer > p {
   font-size: 0.875rem;
   letter-spacing: 0.02rem;
+  word-wrap: break-word;
 }
 
 input,
@@ -62,13 +63,6 @@ textarea {
   color: var(--primary-color);
 }
 
-[data-icon="trash-can"] {
-  width: 30px;
-  align-self: end;
-  color: red;
-  cursor: pointer;
-}
-
 form {
   height: 100%;
   display: flex;
@@ -80,7 +74,19 @@ form {
   display: flex;
   justify-content: space-around;
   align-self: flex-end;
+  opacity: 0;
 }
+
+.buttonContainerDisplay {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.buttonContainerNone {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
 .addBtn,
 .deleteBtn,
 .editBtn,
@@ -121,4 +127,12 @@ form {
 
 .noteEdit {
   border: 1px solid var(--dark-gray);
+}
+
+@media only screen and (min-width: 1000px) {
+  .cardAdd {
+    width: 30%;
+    grid-area: 1/ 1 /1 / span 4;
+    justify-self: center;
+  }
 }

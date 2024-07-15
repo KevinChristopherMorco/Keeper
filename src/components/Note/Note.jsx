@@ -105,13 +105,17 @@ const Note = (props) => {
     });
   };
 
-  const saveChanges = (event) => {
+  const saveChanges = () => {
     const { header, content } = note;
     props.handleChanges(props.id, header, content);
   };
 
   return (
-    <div className={className.card}>
+    <div
+      className={className.card}
+      onMouseOut={props.handleOut}
+      onMouseOver={props.handleHover}
+    >
       <div className={className.headingContainer}>
         {isEditable ? (
           <Input
@@ -136,7 +140,13 @@ const Note = (props) => {
           <p className={className.content}>{content}</p>
         )}
       </div>
-      <div className={className.buttonContainer}>
+      <div
+        className={`${className.buttonContainer} ${
+          props.isHover
+            ? className.buttonContainerDisplay
+            : className.buttonContainerNone
+        }`}
+      >
         <button
           className={isEditable ? className.saveBtn : className.editBtn}
           onClick={isEditable ? saveChanges : handleEdit}
