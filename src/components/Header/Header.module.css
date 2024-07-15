@@ -22,3 +22,12 @@
   font-weight: 700;
   letter-spacing: 0.05rem;
 }
+
+@media only screen and (min-width: 1000px) {
+  .navbar {
+    padding: 1.25rem;
+  }
+  .navbar .logoContainer {
+    width: 5%;
+  }
+}

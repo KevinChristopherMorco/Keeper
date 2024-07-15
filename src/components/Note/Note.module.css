@@ -22,6 +22,7 @@
 .heading {
   font-size: 1.1rem;
   font-weight: bold;
+  word-wrap: break-word;
 }
 
 .contentContainer {
@@ -55,8 +56,18 @@ input {
 }
 
 textarea {
-  flex: 1;
   font-weight: 500;
+  flex: 1;
+}
+
+.textAreaContainerShow {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+}
+
+.textAreaContainerHide {
+  display: none;
 }
 
 [data-icon="circle-plus"] {
@@ -129,10 +140,24 @@ form {
   border: 1px solid var(--dark-gray);
 }
 
+.cardShow {
+  height: 30vh;
+  transition: height 0.1s ease-in-out;
+}
+
+.cardHide {
+  height: 10vh;
+  transition: height 0.1s ease-in-out;
+}
+
 @media only screen and (min-width: 1000px) {
   .cardAdd {
-    width: 30%;
-    grid-area: 1/ 1 /1 / span 4;
+    width: 50%;
+    align-items: stretch;
+    grid-area: 1/ 1 / span 2 / span 4;
     justify-self: center;
+  }
+  .addBtn {
+    width: 25%;
   }
 }

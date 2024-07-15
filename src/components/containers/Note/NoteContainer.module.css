@@ -9,8 +9,8 @@
   .container {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: repeat(2, auto);
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
     align-items: flex-start;
-    gap: 20px;
   }
 }

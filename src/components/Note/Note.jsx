@@ -17,28 +17,35 @@ import { v4 } from "uuid";
 const AddNote = (props) => {
   const timeAdded = new Date().getTime();
 
-  const [inputValue, setInputValue] = useState({
+  const [input, setInput] = useState({
     id: `${v4()}-${timeAdded}`,
     header: "",
     content: "",
     isEditable: false,
   });
+  const [showTextArea, setTextArea] = useState(false);
 
   const handleChange = useCallback(
     (e) => {
       const { name, value } = e.target;
-      setInputValue((prevNote) => ({
+      setInput((prevNote) => ({
         ...prevNote,
         [name]: value,
       }));
+
+      if (value === "" && (input.header === "" || input.content === "")) {
+        setTextArea(false);
+      } else {
+        setTextArea(true);
+      }
     },
-    [inputValue]
+    [input]
   );
 
   const handleSubmit = useCallback(
     (e) => {
-      props.handleAdd(inputValue);
-      setInputValue({
+      props.handleAdd(input);
+      setInput({
         id: `${v4()}-${timeAdded}`,
         header: "",
         content: "",
@@ -46,30 +53,42 @@ const AddNote = (props) => {
       });
       e.preventDefault();
     },
-    [inputValue]
+    [input]
   );
 
   return (
-    <div className={className.cardAdd}>
+    <div
+      className={`${className.cardAdd} ${
+        showTextArea ? className.cardShow : className.cardHide
+      }`}
+    >
       <form onSubmit={handleSubmit}>
         <Input
           name="header"
           type="text"
           placeholder="A clever title..."
-          value={inputValue.header}
+          value={input.header}
           onChange={handleChange}
         />
 
-        <Textarea
-          name="content"
-          placeholder="Write something amazing..."
-          value={inputValue.content}
-          onChange={handleChange}
-        />
-        <button className={className.addBtn} type="submit">
-          <FontAwesomeIcon className="fa-2xl" icon={faCirclePlus} />
-          Add your note
-        </button>
+        <div
+          className={
+            showTextArea
+              ? className.textAreaContainerShow
+              : className.textAreaContainerHide
+          }
+        >
+          <Textarea
+            name="content"
+            placeholder="Write something amazing..."
+            value={input.content}
+            onChange={handleChange}
+          />
+          <button className={className.addBtn} type="submit">
+            <FontAwesomeIcon className="fa-2xl" icon={faCirclePlus} />
+            Add your note
+          </button>
+        </div>
       </form>
     </div>
   );
