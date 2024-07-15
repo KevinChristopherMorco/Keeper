@@ -129,11 +129,20 @@ const Note = (props) => {
     props.handleChanges(props.id, header, content);
   };
 
+  const [isHover, setHovers] = useState(false);
+
+  const handleHover = useCallback((event) => {
+    const { type } = event;
+    console.log(type);
+
+    type === "mouseover" ? setHovers(true) : setHovers(false);
+  });
+
   return (
     <div
       className={className.card}
-      onMouseOut={props.handleOut}
-      onMouseOver={props.handleHover}
+      onMouseOut={handleHover}
+      onMouseOver={handleHover}
     >
       <div className={className.headingContainer}>
         {isEditable ? (
@@ -161,7 +170,7 @@ const Note = (props) => {
       </div>
       <div
         className={`${className.buttonContainer} ${
-          props.isHover
+          isHover
             ? className.buttonContainerDisplay
             : className.buttonContainerNone
         }`}
