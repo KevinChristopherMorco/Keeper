@@ -66,7 +66,7 @@ const AddNote = (props) => {
         <Input
           name="header"
           type="text"
-          placeholder="A clever title..."
+          placeholder="Think of your awesome title..."
           value={input.header}
           onChange={handleChange}
         />
@@ -133,8 +133,6 @@ const Note = (props) => {
 
   const handleHover = useCallback((event) => {
     const { type } = event;
-    console.log(type);
-
     type === "mouseover" ? setHovers(true) : setHovers(false);
   });
 

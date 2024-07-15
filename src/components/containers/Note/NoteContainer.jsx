@@ -55,15 +55,6 @@ const NoteContainer = () => {
     localStorage.setItem("notes", JSON.stringify(note));
   }, [note]);
 
-  // const [hover, setHover] = useState(null);
-
-  // const handleHover = useCallback((id) => {
-  //   setHover(id);
-  // });
-  // const handleMouseOut = useCallback(() => {
-  //   setHover(null);
-  // });
-
   return (
     <div className={className.container}>
       <AddNote handleAdd={handleAddNote} />

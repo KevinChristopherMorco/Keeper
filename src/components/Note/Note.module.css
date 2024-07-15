@@ -38,7 +38,6 @@
 input,
 textarea {
   width: 100%;
-  height: auto;
   margin: 0.75rem 0;
   font-size: 1.1rem;
   letter-spacing: 0.02rem;
@@ -58,6 +57,7 @@ input {
 textarea {
   font-weight: 500;
   flex: 1;
+  resize: none;
 }
 
 .textAreaContainerShow {
@@ -141,12 +141,12 @@ form {
 }
 
 .cardShow {
-  height: 30vh;
+  height: 50vh;
   transition: height 0.1s ease-in-out;
 }
 
 .cardHide {
-  height: 10vh;
+  height: 15vh;
   transition: height 0.1s ease-in-out;
 }
 
