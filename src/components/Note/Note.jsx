@@ -10,6 +10,8 @@ import {
   faFloppyDisk,
 } from "@fortawesome/free-regular-svg-icons";
 
+import swal from "sweetalert";
+
 import Input from "../elements/Input";
 import Textarea from "../elements/Textarea";
 
@@ -44,6 +46,19 @@ const AddNote = (props) => {
 
   const handleSubmit = useCallback(
     (e) => {
+      if (input.content === "" || input.header === "") {
+        e.preventDefault();
+        swal({
+          title: "Some input fields are empty!",
+          text: "Please make sure all inputs are valid.",
+          icon: "error",
+          dangerMode: true,
+          closeOnClickOutside: false,
+        });
+        setTextArea(true);
+        return;
+      }
+
       props.handleAdd(input);
       setInput({
         id: `${v4()}-${timeAdded}`,
@@ -101,6 +116,7 @@ const Note = ({ id, header, content, handleDelete, handleChange }) => {
   });
 
   const [isEditable, setEditable] = useState(false);
+  const [isHover, setHovers] = useState(false);
 
   const handleEdit = () => {
     setEditable(true);
@@ -132,8 +148,6 @@ const Note = ({ id, header, content, handleDelete, handleChange }) => {
     handleChange(id, header, content);
     setEditable(false);
   };
-
-  const [isHover, setHovers] = useState(false);
 
   const handleHover = useCallback((event) => {
     const { type } = event;
