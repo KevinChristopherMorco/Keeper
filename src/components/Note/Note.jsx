@@ -7,6 +7,7 @@ import {
   faPenToSquare,
   faSquareCheck,
   faXmarkCircle,
+  faFloppyDisk,
 } from "@fortawesome/free-regular-svg-icons";
 
 import Input from "../elements/Input";
@@ -21,7 +22,6 @@ const AddNote = (props) => {
     id: `${v4()}-${timeAdded}`,
     header: "",
     content: "",
-    isEditable: false,
   });
   const [showTextArea, setTextArea] = useState(false);
 
@@ -49,8 +49,8 @@ const AddNote = (props) => {
         id: `${v4()}-${timeAdded}`,
         header: "",
         content: "",
-        isEditable: false,
       });
+      setTextArea(false);
       e.preventDefault();
     },
     [input]
@@ -94,15 +94,11 @@ const AddNote = (props) => {
   );
 };
 
-const Note = (props) => {
-  const { header, content } = props;
-
+const Note = ({ id, header, content, handleDelete, handleChange }) => {
   const [note, setNote] = useState({
-    header: props.header,
-    content: props.content,
+    header: header,
+    content: content,
   });
-
-  const handleDelete = useCallback(() => props.handleDelete(props.id));
 
   const [isEditable, setEditable] = useState(false);
 
@@ -115,14 +111,14 @@ const Note = (props) => {
 
     setNote(() => {
       return {
-        header: props.header,
-        content: props.content,
+        header: header,
+        content: content,
       };
     });
   });
 
   const onChange = (event) => {
-    setNote((prev) => {
+    setNote(() => {
       const { name, value } = event.target;
       return {
         ...note,
@@ -133,7 +129,7 @@ const Note = (props) => {
 
   const saveChanges = () => {
     const { header, content } = note;
-    props.handleChanges(props.id, header, content);
+    handleChange(id, header, content);
     setEditable(false);
   };
 
@@ -179,6 +175,10 @@ const Note = (props) => {
           isHover
             ? className.buttonContainerDisplay
             : className.buttonContainerNone
+        } ${
+          isEditable
+            ? className.buttonContainerEdit
+            : className.buttonContainerNotEdit
         }`}
       >
         <button
@@ -187,7 +187,7 @@ const Note = (props) => {
         >
           <FontAwesomeIcon
             className="fa-xl"
-            icon={isEditable ? faSquareCheck : faPenToSquare}
+            icon={isEditable ? faFloppyDisk : faPenToSquare}
           />
           {isEditable ? "Save" : "Edit"}
         </button>
@@ -199,7 +199,7 @@ const Note = (props) => {
             className="fa-xl"
             icon={isEditable ? faXmarkCircle : faTrashCan}
           />
-          {isEditable ? "Discard" : "Delete"}
+          {isEditable ? "Cancel" : "Delete"}
         </button>
       </div>
     </div>

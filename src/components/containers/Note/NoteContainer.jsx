@@ -30,9 +30,7 @@ const NoteContainer = () => {
   const handleChanges = (id, header, content) => {
     setNote((prevValue) =>
       prevValue.map((note) =>
-        note.id === id
-          ? { ...note, header: header, content: content, isEditable: false }
-          : note
+        note.id === id ? { ...note, header: header, content: content } : note
       )
     );
   };
@@ -45,15 +43,15 @@ const NoteContainer = () => {
   return (
     <div className={className.container}>
       <AddNote handleAdd={handleAddNote} />
-      {note.map((props, index) => {
+      {note.map((note) => {
         return (
           <Note
-            key={index}
-            id={props.id}
-            header={props.header}
-            content={props.content}
-            handleDelete={handleDeleteNote}
-            handleChanges={handleChanges}
+            key={note.id}
+            id={note.id}
+            header={note.header}
+            content={note.content}
+            handleDelete={() => handleDeleteNote(note.id)}
+            handleChange={handleChanges}
           />
         );
       })}

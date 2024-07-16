@@ -8,6 +8,7 @@ footer {
   text-align: center;
   color: var(--white);
   background-color: var(--primary-color);
+  border-top: 1px solid var(--dark-gray);
 }
 
 .footerText {

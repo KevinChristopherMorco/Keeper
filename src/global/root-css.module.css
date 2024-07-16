@@ -1,13 +1,16 @@
 :root {
-  --primary-color: #f4b218;
+  /* --primary-color: #f4b218; */
+  --primary-color: #1e2222;
   --focus-color: #f4b218;
+  --shadow-color: #000;
+  --button-color: #b6b6b6;
   --red: #fc4e4e;
   --green: #00a865;
   --orange: #f8941b;
   --black: #000;
   --white: #fff;
   --gray: #eaeae9;
-  --dark-gray: #b1b1b1;
+  --dark-gray: #5e5e5e;
 
   --font-family: "Roboto";
 }
@@ -57,5 +60,5 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--gray);
+  background-color: var(--primary-color);
 }

@@ -6,9 +6,11 @@
   flex-direction: column;
   justify-content: space-evenly;
   padding: 1rem 1rem 1.25rem 1rem;
-  box-shadow: -1px 1px 10px var(--dark-gray);
+  box-shadow: -1px 5px 10px var(--shadow-color);
+  border: 1px solid var(--dark-gray);
   border-radius: 0.5rem;
-  background-color: var(--white);
+  color: var(--white);
+  background-color: var(--primary-color);
 }
 
 .card {
@@ -42,6 +44,8 @@ textarea {
   font-size: 1.1rem;
   letter-spacing: 0.02rem;
   border: none;
+  color: var(--white);
+  background-color: var(--primary-color);
 }
 
 input:focus,
@@ -71,7 +75,7 @@ textarea {
 }
 
 [data-icon="circle-plus"] {
-  color: var(--primary-color);
+  color: var(--button-color);
 }
 
 form {
@@ -81,11 +85,18 @@ form {
 }
 
 .buttonContainer {
-  width: 50%;
   display: flex;
   justify-content: space-around;
   align-self: flex-end;
   opacity: 0;
+}
+
+.buttonContainerEdit {
+  width: 55%;
+}
+
+.buttonContainerNotEdit {
+  width: 50%;
 }
 
 .buttonContainerDisplay {
@@ -111,33 +122,26 @@ form {
   background: none;
   align-self: end;
   cursor: pointer;
+  color: var(--button-color);
 }
 
 .addBtn {
   font-weight: bolder;
-  color: var(--primary-color);
 }
 
 .deleteBtn {
   width: 50%;
   font-weight: bolder;
-  color: var(--red);
 }
 
 .editBtn {
   width: 40%;
   font-weight: bolder;
-  color: var(--orange);
 }
 
 .saveBtn {
   width: 40%;
   font-weight: bolder;
-  color: var(--green);
-}
-
-.noteEdit {
-  border: 1px solid var(--dark-gray);
 }
 
 .cardShow {
