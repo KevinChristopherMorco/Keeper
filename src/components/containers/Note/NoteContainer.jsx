@@ -7,6 +7,8 @@ const NoteContainer = () => {
     () => JSON.parse(localStorage.getItem("notes")) || []
   );
 
+  //CRUD
+
   const handleAddNote = useCallback(
     (note) => {
       setNote((prevValue) => {
@@ -24,22 +26,6 @@ const NoteContainer = () => {
     },
     [note]
   );
-
-  const handleEdit = (id) => {
-    setNote((prevValue) =>
-      prevValue.map((note) =>
-        note.id === id ? { ...note, isEditable: true } : note
-      )
-    );
-  };
-
-  const handleDiscard = (id) => {
-    setNote((prevValue) =>
-      prevValue.map((note) =>
-        note.id === id ? { ...note, isEditable: false } : note
-      )
-    );
-  };
 
   const handleChanges = (id, header, content) => {
     setNote((prevValue) =>
@@ -66,11 +52,8 @@ const NoteContainer = () => {
             id={props.id}
             header={props.header}
             content={props.content}
-            handleEdit={handleEdit}
             handleDelete={handleDeleteNote}
             handleChanges={handleChanges}
-            handleDiscard={handleDiscard}
-            isEditable={props.isEditable}
           />
         );
       })}

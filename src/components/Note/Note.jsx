@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import className from "./Note.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
@@ -95,7 +95,7 @@ const AddNote = (props) => {
 };
 
 const Note = (props) => {
-  const { header, content, isEditable } = props;
+  const { header, content } = props;
 
   const [note, setNote] = useState({
     header: props.header,
@@ -103,9 +103,16 @@ const Note = (props) => {
   });
 
   const handleDelete = useCallback(() => props.handleDelete(props.id));
-  const handleEdit = useCallback(() => props.handleEdit(props.id));
+
+  const [isEditable, setEditable] = useState(false);
+
+  const handleEdit = () => {
+    setEditable(true);
+  };
+
   const discardChanges = useCallback(() => {
-    props.handleDiscard(props.id);
+    setEditable(false);
+
     setNote(() => {
       return {
         header: props.header,
@@ -127,6 +134,7 @@ const Note = (props) => {
   const saveChanges = () => {
     const { header, content } = note;
     props.handleChanges(props.id, header, content);
+    setEditable(false);
   };
 
   const [isHover, setHovers] = useState(false);
