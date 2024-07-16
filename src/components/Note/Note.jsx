@@ -1,11 +1,10 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import className from "./Note.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import {
   faTrashCan,
   faPenToSquare,
-  faSquareCheck,
   faXmarkCircle,
   faFloppyDisk,
 } from "@fortawesome/free-regular-svg-icons";
@@ -74,7 +73,7 @@ const AddNote = (props) => {
   return (
     <div
       className={`${className.cardAdd} ${
-        showTextArea ? className.cardShow : className.cardHide
+        showTextArea ? className.addCardAdjust : className.addCardDefault
       }`}
     >
       <form onSubmit={handleSubmit}>

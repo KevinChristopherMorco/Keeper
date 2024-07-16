@@ -6,13 +6,15 @@
   flex-direction: column;
   justify-content: space-evenly;
   padding: 1rem 1rem 1.25rem 1rem;
-  box-shadow: -1px 5px 10px var(--shadow-color);
+  box-shadow: -1px 3px 5px var(--shadow-color);
   border: 1px solid var(--dark-gray);
   border-radius: 0.5rem;
   color: var(--white);
   background-color: var(--primary-color);
 }
-
+.cardAdd {
+  margin: 0 auto 5%;
+}
 .card {
   height: auto;
 }
@@ -144,12 +146,12 @@ form {
   font-weight: bolder;
 }
 
-.cardShow {
-  height: 50vh;
+.addCardAdjust {
+  height: 40vh;
   transition: height 0.1s ease-in-out;
 }
 
-.cardHide {
+.addCardDefault {
   height: 15vh;
   transition: height 0.1s ease-in-out;
 }

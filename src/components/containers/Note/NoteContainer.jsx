@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import className from "./NoteContainer.module.css";
 import Note, { AddNote } from "../../Note/Note";
 import swal from "sweetalert";
+import Masonry from "react-masonry-css";
 
 const NoteContainer = () => {
   const [note, setNote] = useState(
@@ -55,21 +56,34 @@ const NoteContainer = () => {
     localStorage.setItem("notes", JSON.stringify(note));
   }, [note]);
 
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1,
+  };
+
   return (
-    <div className={className.container}>
+    <div className={className.noteContainer}>
       <AddNote handleAdd={handleAddNote} />
-      {note.map((note) => {
-        return (
-          <Note
-            key={note.id}
-            id={note.id}
-            header={note.header}
-            content={note.content}
-            handleDelete={() => handleDeleteNote(note.id)}
-            handleChange={handleChanges}
-          />
-        );
-      })}
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className={className.myMasonryGrid}
+        columnClassName={className.myMasonryGridColumn}
+      >
+        {note.map((note) => {
+          return (
+            <Note
+              key={note.id}
+              id={note.id}
+              header={note.header}
+              content={note.content}
+              handleDelete={() => handleDeleteNote(note.id)}
+              handleChange={handleChanges}
+            />
+          );
+        })}
+      </Masonry>
     </div>
   );
 };

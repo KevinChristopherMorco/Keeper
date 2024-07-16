@@ -1,16 +1,19 @@
-.container {
-  padding: 5vh 3vw;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.noteContainer {
+  padding: 1rem;
 }
 
-@media only screen and (min-width: 1000px) {
-  .container {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    grid-template-rows: auto;
-    grid-auto-rows: auto;
-    align-items: flex-start;
-  }
+/* Masonry Library */
+
+.myMasonryGrid {
+  display: flex;
+  margin-left: -30px;
+  width: auto;
+}
+.myMasonryGridColumn {
+  padding-left: 30px;
+  background-clip: padding-box;
+}
+
+.myMasonryGridColumn > div {
+  margin-bottom: 30px;
 }

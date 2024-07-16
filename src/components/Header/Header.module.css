@@ -4,7 +4,7 @@
   font-family: var(--font-family);
   background-color: var(--primary-color);
   color: var(--white);
-  border-bottom: 1px solid var(--dark-gray);
+  border-bottom: 1px solid var(--gray);
 }
 
 .navbar .logoContainer {
