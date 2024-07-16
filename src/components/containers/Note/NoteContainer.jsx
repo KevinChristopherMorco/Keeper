@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import className from "./NoteContainer.module.css";
 import Note, { AddNote } from "../../Note/Note";
-import { isEditable } from "@testing-library/user-event/dist/utils";
 
 const NoteContainer = () => {
   const [note, setNote] = useState(
@@ -11,7 +10,8 @@ const NoteContainer = () => {
   const handleAddNote = useCallback(
     (note) => {
       setNote((prevValue) => {
-        return [...prevValue, note];
+        const previousValue = [...prevValue].reverse();
+        return [note, ...previousValue];
       });
     },
     [note]
@@ -53,6 +53,7 @@ const NoteContainer = () => {
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(note));
+    console.log(note);
   }, [note]);
 
   return (

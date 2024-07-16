@@ -28,6 +28,13 @@
     padding: 1.25rem;
   }
   .navbar .logoContainer {
-    width: 5%;
+    width: 10%;
+    justify-content: space-evenly;
+  }
+  .navbar .logoContainer > svg {
+    font-size: 1.25rem;
+  }
+  .navbar p {
+    font-size: 1.25rem;
   }
 }
