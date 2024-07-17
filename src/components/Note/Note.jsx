@@ -9,7 +9,7 @@ import {
   faFloppyDisk,
 } from "@fortawesome/free-regular-svg-icons";
 
-import swal from "sweetalert";
+import { WarningAlert, DangerAlert } from "../Alert/SweetAlert";
 
 import Input from "../elements/Input";
 import Textarea from "../elements/Textarea";
@@ -26,49 +26,41 @@ const AddNote = (props) => {
   });
   const [showTextArea, setTextArea] = useState(false);
 
-  const handleChange = useCallback(
-    (e) => {
-      const { name, value } = e.target;
-      setInput((prevNote) => ({
-        ...prevNote,
-        [name]: value,
-      }));
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setInput((prevNote) => ({
+      ...prevNote,
+      [name]: value,
+    }));
 
-      if (value === "" && (input.header === "" || input.content === "")) {
-        setTextArea(false);
-      } else {
-        setTextArea(true);
-      }
-    },
-    [input]
-  );
-
-  const handleSubmit = useCallback(
-    (e) => {
-      if (input.content === "" || input.header === "") {
-        e.preventDefault();
-        swal({
-          title: "Some input fields are empty!",
-          text: "Please make sure all inputs are valid.",
-          icon: "error",
-          dangerMode: true,
-          closeOnClickOutside: false,
-        });
-        setTextArea(true);
-        return;
-      }
-
-      props.handleAdd(input);
-      setInput({
-        id: `${v4()}-${timeAdded}`,
-        header: "",
-        content: "",
-      });
+    if (value === "" && (input.header === "" || input.content === "")) {
       setTextArea(false);
-      e.preventDefault();
-    },
-    [input]
-  );
+    } else {
+      setTextArea(true);
+    }
+  };
+
+  const handleSubmit = (event) => {
+    if (input.content === "" || input.header === "") {
+      event.preventDefault();
+      setTextArea(true);
+      WarningAlert(
+        "Some input fields are empty!",
+        "Please make sure all inputs are valid.",
+        "error"
+      );
+      return;
+    }
+
+    props.handleAdd(input);
+    setInput({
+      id: `${v4()}-${timeAdded}`,
+      header: "",
+      content: "",
+    });
+    setTextArea(false);
+    event.preventDefault();
+  };
 
   return (
     <div
@@ -121,17 +113,6 @@ const Note = ({ id, header, content, handleDelete, handleChange }) => {
     setEditable(true);
   };
 
-  const discardChanges = useCallback(() => {
-    setEditable(false);
-
-    setNote(() => {
-      return {
-        header: header,
-        content: content,
-      };
-    });
-  });
-
   const onChange = (event) => {
     setNote(() => {
       const { name, value } = event.target;
@@ -144,18 +125,45 @@ const Note = ({ id, header, content, handleDelete, handleChange }) => {
 
   const saveChanges = () => {
     const { header, content } = note;
+    if (header === "" || content === "") {
+      WarningAlert(
+        "Some input fields are empty!",
+        "Please make sure all inputs are valid.",
+        "error"
+      );
+      return;
+    }
+
     handleChange(id, header, content);
     setEditable(false);
   };
 
-  const handleHover = useCallback((event) => {
+  const discardChanges = () => {
+    const resetNote = () => {
+      setEditable(false);
+      setNote({
+        header: header,
+        content: content,
+      });
+    };
+
+    DangerAlert(
+      "Discard changes?",
+      "No changes were made!",
+      "warning",
+      true,
+      resetNote
+    );
+  };
+
+  const handleHover = (event) => {
     const { type } = event;
     type === "mouseover" ? setHovers(true) : setHovers(false);
-  });
+  };
 
   return (
     <div
-      className={className.card}
+      className={`${className.card} ${isEditable && className.cardEdit}`}
       onMouseOut={handleHover}
       onMouseOver={handleHover}
     >
@@ -166,6 +174,7 @@ const Note = ({ id, header, content, handleDelete, handleChange }) => {
             className={className.noteEdit}
             value={note.header}
             onChange={onChange}
+            placeholder="Think of your awesome title..."
           />
         ) : (
           <p className={className.heading}>{header}</p>
@@ -178,6 +187,7 @@ const Note = ({ id, header, content, handleDelete, handleChange }) => {
             className={className.noteEdit}
             value={note.content}
             onChange={onChange}
+            placeholder="Write something amazing..."
           />
         ) : (
           <p className={className.content}>{content}</p>
@@ -219,5 +229,4 @@ const Note = ({ id, header, content, handleDelete, handleChange }) => {
   );
 };
 
-export default Note;
-export { AddNote };
+export { AddNote, Note };
