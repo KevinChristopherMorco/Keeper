@@ -139,21 +139,11 @@ const Note = ({ id, header, content, handleDelete, handleChange }) => {
   };
 
   const discardChanges = () => {
-    const resetNote = () => {
-      setEditable(false);
-      setNote({
-        header: header,
-        content: content,
-      });
-    };
-
-    DangerAlert(
-      "Discard changes?",
-      "No changes were made!",
-      "warning",
-      true,
-      resetNote
-    );
+    setEditable(false);
+    setNote({
+      header: header,
+      content: content,
+    });
   };
 
   const handleHover = (event) => {

@@ -35,7 +35,6 @@ const DangerAlert = (
     closeOnClickOutside: false,
   }).then((userAction) => {
     if (stopAction) {
-      handleFunction();
       return;
     }
     if (userAction) {
