@@ -17,11 +17,21 @@
 }
 
 .cardEdit {
-  height: 50vh;
+  height: 40vh;
 }
 
 .cardAdd {
   margin: 0 auto 5%;
+}
+
+.addCardAdjust {
+  height: 30vh;
+  transition: height 0.1s ease-in-out;
+}
+
+.addCardDefault {
+  height: 15vh;
+  transition: height 0.1s ease-in-out;
 }
 
 .headingContainer {
@@ -36,6 +46,11 @@
 
 .contentContainer {
   margin: 0 0 1.25rem;
+  flex: 2;
+}
+
+.contentContainer textarea {
+  height: 100%;
 }
 
 .contentContainer > p {
@@ -136,6 +151,10 @@ form {
   font-weight: bolder;
 }
 
+.addBtn > svg {
+  font-size: 1.25rem;
+}
+
 .deleteBtn {
   width: 50%;
   font-weight: bolder;
@@ -151,24 +170,68 @@ form {
   font-weight: bolder;
 }
 
-.addCardAdjust {
-  height: 40vh;
-  transition: height 0.1s ease-in-out;
+@media only screen and (max-width: 400px) {
+  .addCardAdjust {
+    height: 40vh;
+  }
+
+  .addCardDefault {
+    height: 20vh;
+  }
 }
 
-.addCardDefault {
-  height: 15vh;
-  transition: height 0.1s ease-in-out;
+@media only screen and (min-width: 600px) {
+  .cardAdd {
+    width: 80%;
+  }
+
+  .addBtn {
+    width: 20%;
+  }
+
+  .addCardAdjust {
+    height: 20vh;
+  }
+
+  .addCardDefault {
+    height: 10vh;
+  }
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1200px) {
   .cardAdd {
     width: 50%;
-    align-items: stretch;
-    grid-area: 1/ 1 / span 2 / span 4;
-    justify-self: center;
   }
   .addBtn {
-    width: 25%;
+    width: 20%;
+  }
+
+  .addCardAdjust {
+    height: 40vh;
+  }
+
+  .addCardDefault {
+    height: 15vh;
+  }
+}
+
+@media only screen and (min-width: 1700px) {
+  .addBtn {
+    width: 20%;
+    font-size: 1.1rem;
+  }
+
+  .addBtn > svg {
+    font-size: 1.5rem;
+  }
+
+  .addCardAdjust {
+    height: 35vh;
+    transition: height 0.1s ease-in-out;
+  }
+
+  .addCardDefault {
+    height: 15vh;
+    transition: height 0.1s ease-in-out;
   }
 }
