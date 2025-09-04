@@ -34,15 +34,6 @@ const Footer = () => {
         <li className={className.listItem}>
           <a
             className={className.listLink}
-            href="https://www.linkedin.com/in/kevin-christopher-morco-a9a361289/"
-            target="__blank"
-          >
-            <FontAwesomeIcon icon={faLinkedin} />
-          </a>
-        </li>
-        <li className={className.listItem}>
-          <a
-            className={className.listLink}
             href="https://discordapp.com/users/kevinnnn02"
             target="__blank"
           >
